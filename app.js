@@ -44,18 +44,37 @@ function normalizeResult(x) {
         'Assessment'
       : rawAssessment;
 
+  const rawDate =
+    x.Date ??
+    x.Created ??
+    x.SubmittedAt ??
+    x.createdAt ??
+    '';
+
+  let formattedDate = '';
+
+  if (rawDate) {
+    const parsedDate = new Date(rawDate);
+
+    formattedDate = Number.isNaN(parsedDate.getTime())
+      ? String(rawDate)
+      : parsedDate.toLocaleString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        });
+  }
+
   return {
     assessment,
     score: Number.isFinite(score) ? score : 0,
     scoreDisplay: Number.isFinite(score)
       ? String(score)
       : String(rawScore ?? ''),
-    date:
-      x.Date ??
-      x.Created ??
-      x.SubmittedAt ??
-      x.createdAt ??
-      ''
+    date: formattedDate
   };
 }
 document.getElementById('getResultsButton').onclick=getStudentResults;showCases();
