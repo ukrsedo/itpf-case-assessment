@@ -1,0 +1,10 @@
+{
+  "packageVersion": "1.0.0",
+  "purpose": "Knowledge and control package for migrating IT Procurement Foundations case assessment from a custom GPT to a web portal.",
+  "files": {
+    "cases.json": "Seven complete case records with questions, topic mappings and embedded course guidance.",
+    "course-knowledge.json": "Exact text extracted from mapped course slides.",
+    "assessment-rules.json": "Assessment, challenge-question and score-submission controls."
+  },
+  "important": "The model must receive only the selected case and its mapped knowledge slides, not the entire course deck."
+}

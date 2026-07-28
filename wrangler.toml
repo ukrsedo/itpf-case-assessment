@@ -1,0 +1,6 @@
+name = "itpf-case-assessor"
+main = "worker.js"
+compatibility_date = "2026-07-28"
+
+[vars]
+OPENAI_MODEL = "gpt-5-mini"

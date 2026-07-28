@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IT Procurement Case Assessment</title>
+  <meta name="description" content="Analyse IT procurement cases, receive course-based feedback, and record your score.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">IT Procurement Foundations</p>
+      <h1>Case Assessment</h1>
+      <p>Choose a case, answer the questions in short bullet points, and receive course-based assessment.</p>
+    </header>
+    <section id="app" class="panel" aria-live="polite"></section>
+    <section class="panel results-panel">
+      <h2>Student results</h2>
+      <p>Enter your Student ID to view completed and scored assignments.</p>
+      <div class="inline-form">
+        <input id="resultsStudentId" placeholder="YYMMDD-##" autocomplete="off">
+        <button id="getResultsButton" class="secondary">View results</button>
+      </div>
+      <div id="studentResultsMessage"></div>
+      <div id="studentResultsOutput"></div>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="cases.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
