@@ -16,5 +16,46 @@ function showChallengeForm(){const qs=state.result.challengeQuestions;set(`<h2>C
 function showSubmit(){set(`<h2>Record score</h2><p>Assessment: <strong>${state.case.caseId}</strong></p><p>Score: <strong>${state.result.score}/5</strong></p><label>Student ID <input id="sid" placeholder="YYMMDD-##"></label><div id="submitMessage"></div><div class="actions" id="submitActions"></div>`);const a=document.getElementById('submitActions');a.append(button('Submit score',submitScore));a.append(button('Do not record',showCases,'secondary'))}
 async function submitScore(){const sid=document.getElementById('sid').value.trim(),msg=document.getElementById('submitMessage');if(!/^\d{6}-\d{2}$/.test(sid)){msg.innerHTML='<p class="notice error">Student ID format is invalid.</p>';return}if(state.submissionAttempted){msg.innerHTML='<p class="notice error">This result has already been submitted, or submission was already attempted.</p>';return}const url=window.PORTAL_CONFIG?.submitAssessmentUrl;if(!url){msg.innerHTML='<p class="notice error">Score submission URL is not configured.</p>';return}state.submissionAttempted=true;try{const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({StudentID:sid,AssessmentID:state.case.caseId,Score:Number(state.result.score)})});let body;try{body=await r.json()}catch{body=await r.text()}msg.innerHTML=`<p class="notice ${r.ok?'':'error'}">${r.ok?'Score successfully recorded.':esc(body?.message||body||`Submission failed (${r.status}).`)}</p>`}catch(e){msg.innerHTML=`<p class="notice error">${esc(e.message)}</p>`}}
 async function getStudentResults(){const sid=document.getElementById('resultsStudentId').value.trim(),msg=document.getElementById('studentResultsMessage'),output=document.getElementById('studentResultsOutput');output.innerHTML='';if(!/^\d{6}-\d{2}$/.test(sid)){msg.innerHTML='<p class="notice error">Student ID format is invalid.</p>';return}const url=window.PORTAL_CONFIG?.getStudentResultsUrl;if(!url){msg.innerHTML='<p class="notice error">Student results URL is not configured.</p>';return}msg.innerHTML='<p class="notice">Loading results…</p>';try{const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({StudentID:sid})});let data;try{data=await response.json()}catch{data=await response.text()}if(!response.ok)throw new Error(data?.message||data||`Request failed (${response.status}).`);const raw=Array.isArray(data)?data:(data?.results||data?.value||data?.body||[]);const rows=(Array.isArray(raw)?raw:[]).map(normalizeResult);msg.innerHTML='';if(!rows.length){output.innerHTML='<p class="notice">No recorded results were found.</p>';return}const total=rows.reduce((s,x)=>s+x.score,0);output.innerHTML=`<p class="notice"><strong>Total recorded score:</strong> ${total}</p><table class="history"><thead><tr><th>Assessment</th><th>Score</th><th>Date</th></tr></thead><tbody>${rows.map(x=>`<tr><td>${esc(x.assessment)}</td><td>${esc(x.scoreDisplay)}</td><td>${esc(x.date)}</td></tr>`).join('')}</tbody></table>`}catch(e){msg.innerHTML=`<p class="notice error">${esc(e.message)}</p>`}}
-function normalizeResult(x){const raw=x.Score??x.score??x.Points??x.points??x.Result??x.result;const n=Number(raw);return{assessment:x.AssessmentID??x.assessmentId??x.Assessment??x.Title??'Assessment',score:Number.isFinite(n)?n:0,scoreDisplay:Number.isFinite(n)?String(n):String(raw??''),date:x.Date??x.Created??x.SubmittedAt??x.createdAt??''}}
+function normalizeResult(x) {
+  const rawScore =
+    x.Score ??
+    x.score ??
+    x.Points ??
+    x.points ??
+    x.Result ??
+    x.result;
+
+  const score = Number(rawScore);
+
+  const rawAssessment =
+    x.AssessmentID ??
+    x.assessmentId ??
+    x.Assessment ??
+    x.Title ??
+    'Assessment';
+
+  const assessment =
+    typeof rawAssessment === 'object' && rawAssessment !== null
+      ? rawAssessment.Value ??
+        rawAssessment.value ??
+        rawAssessment.Title ??
+        rawAssessment.LookupValue ??
+        rawAssessment.Id ??
+        'Assessment'
+      : rawAssessment;
+
+  return {
+    assessment,
+    score: Number.isFinite(score) ? score : 0,
+    scoreDisplay: Number.isFinite(score)
+      ? String(score)
+      : String(rawScore ?? ''),
+    date:
+      x.Date ??
+      x.Created ??
+      x.SubmittedAt ??
+      x.createdAt ??
+      ''
+  };
+}
 document.getElementById('getResultsButton').onclick=getStudentResults;showCases();
