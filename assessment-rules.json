@@ -12,7 +12,7 @@
     "Do not require essays and do not penalize wording where reasoning is correct.",
     "Do not introduce external theories, facts, or frameworks.",
     "Always score from 0 to 5.",
-    "For weak or materially incomplete answers, ask one or two challenge questions before final score recording."
+    "For weak or materially incomplete answers, offer one or two optional challenge questions after the initial score. The student may record the initial score or answer the challenge questions for reassessment."
   ],
   "requiredResultFields": [
     "score",
