@@ -12,19 +12,18 @@
     "Do not require essays and do not penalize wording where reasoning is correct.",
     "Do not introduce external theories, facts, or frameworks.",
     "Always score from 0 to 5.",
-    "For weak or materially incomplete answers, offer one or two optional challenge questions after the initial score. The student may record the initial score or answer the challenge questions for reassessment."
+    "Provide feedback mapped to every main case question. Do not generate challenge or follow-up questions."
   ],
   "requiredResultFields": [
     "score",
-    "whatIsCorrect",
-    "mostImportantMissingPoint",
-    "strongerAnswer",
-    "challengeRequired",
-    "challengeQuestions"
+    "questionFeedback",
+    "correctPoints",
+    "missingPoint",
+    "strongerAnswer"
   ],
   "resultConstraints": {
+    "questionFeedback": "one assessment for every main question",
     "strongerAnswer": "3-5 concise bullets",
-    "challengeQuestions": "0-2 questions",
     "score": "integer 0-5"
   },
   "scoreRecording": {
