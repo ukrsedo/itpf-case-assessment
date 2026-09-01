@@ -1,0 +1,21 @@
+name: Package corrected worker
+on:
+  push:
+    paths:
+      - '.github/workflows/package-worker.yml'
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare package
+        run: |
+          mkdir package
+          cp worker.js package/itpf-case-assessor-worker-case2-fixed.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: itpf-case-assessor-worker-case2-fixed
+          path: package/itpf-case-assessor-worker-case2-fixed.js
+          if-no-files-found: error
