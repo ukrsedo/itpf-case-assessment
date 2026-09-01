@@ -21,23 +21,11 @@ window.CASES = [
     "caseId": "CASE-02",
     "caseNumber": 2,
     "title": "Opportunity Cost & TCO (British Airways IT Outsourcing)",
-    "authoritativeCaseContent": "Opportunity cost is the value of the best alternative forgone when a decision is made. In sourcing, this means considering not only the direct cost of each option, but also the economic benefits that may be lost by choosing one alternative instead of another.
-
-In 2016, British Airways outsourced more than 700 UK-based IT roles.
-
-For this exercise, assume BA was comparing two sourcing alternatives over a five-year period:
-- Keep the IT activities in-house: £720 million five-year TCO.
-- Outsource the IT activities: £540 million five-year TCO.
-
-In 2017, BA experienced a major IT disruption affecting approximately 75,000 passengers, with reported losses of nearly £150 million. For this exercise, assume that retaining stronger internal IT capability would have prevented this loss.
-
-Also assume that each of the 700 internal IT employees supports £350,000 of company revenue per year and that BA operates at a 5% profit margin. Revenue itself should not be compared directly with sourcing savings, so any economic comparison should use the profit contribution associated with that revenue.
-
-Your task is to compare the sourcing alternatives using TCO, opportunity cost, retained capability and business continuity rather than supplier cost alone.",
+    "authoritativeCaseContent": "Opportunity cost is the value of the best alternative forgone when a decision is made. In sourcing, this means considering not only the direct cost of each option, but also the economic benefits that may be lost by choosing one alternative instead of another.\n\nIn 2016, British Airways outsourced more than 700 UK-based IT roles.\n\nFor this exercise, assume BA was comparing two sourcing alternatives over a five-year period:\n- Keep the IT activities in-house: £720 million five-year TCO.\n- Outsource the IT activities: £540 million five-year TCO.\n\nIn 2017, BA experienced a major IT disruption affecting approximately 75,000 passengers, with reported losses of nearly £150 million. For this exercise, assume that retaining stronger internal IT capability would have prevented this loss.\n\nAlso assume that each of the 700 internal IT employees supports £350,000 of company revenue per year and that BA operates at a 5% profit margin. Revenue itself should not be compared directly with sourcing savings, so any economic comparison should use the profit contribution associated with that revenue.\n\nYour task is to compare the sourcing alternatives using TCO, opportunity cost, retained capability and business continuity rather than supplier cost alone.",
     "studentQuestions": [
-          "Compare the economic opportunity costs of the two sourcing options using the information provided. Show your calculations.",
-          "Which sourcing option appears economically preferable over five years, and why?",
-          "What assumptions or risks could change that conclusion?"
+      "Compare the economic opportunity costs of the two sourcing options using the information provided. Show your calculations.",
+      "Which sourcing option appears economically preferable over five years, and why?",
+      "What assumptions or risks could change that conclusion?"
     ],
     "relatedTopics": [
       "TCO of a Technology Service",
