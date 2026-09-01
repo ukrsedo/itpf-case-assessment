@@ -16,12 +16,13 @@
   ],
   "caseSpecificRules": {
     "CASE-02": [
-      "Do not require or reward a numerical opportunity-cost calculation.",
-      "Do not deduct points because the student does not calculate or mention GBP 62.5 million.",
-      "The GBP 62.5 million calculation is tutor/background material and is not part of the student-facing evidence or score-bearing rubric.",
-      "Assess opportunity cost conceptually: lost revenue, disruption, customer trust, operational damage, foregone retained internal capability, resilience and service continuity are valid answers when linked to the case.",
-      "Assess the recommendation by whether the student balances apparent TCO savings against operational risk, continuity, control and risk-adjusted TCO; selective or hybrid outsourcing is a valid recommendation when reasoned from the case.",
-      "A score of 5 does not require any numerical opportunity-cost figure."
+      "Question 1 requires a numerical comparison of the economic opportunity costs using only the case assumptions.",
+      "For choosing in-house, recognize the £180 million five-year TCO advantage forgone versus outsourcing (£720m - £540m).",
+      "For choosing outsourcing, recognize the assumed value forgone from retained internal capability: £61.25 million five-year profit contribution (700 x £350,000 x 5% x 5 years) plus the assumed £150 million disruption loss prevented by stronger internal capability, giving £211.25 million under the exercise assumptions.",
+      "Do not compare £350,000 revenue per FTE directly with sourcing savings; apply the stated 5% profit margin first.",
+      "Under the stated assumptions, insourcing has a £31.25 million economic advantage over outsourcing (£211.25m - £180m).",
+      "Question 3 should test the assumptions: especially whether insourcing really would have prevented the full £150m loss, whether revenue supported per FTE is a valid proxy for economic value, and whether all relevant transition, governance, resilience and supplier-performance risks are captured.",
+      "A different recommendation may receive full credit only if the student explicitly challenges one or more case assumptions and explains how that changes the economics."
     ]
   },
   "requiredResultFields": [
