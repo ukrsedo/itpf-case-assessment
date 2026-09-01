@@ -48,9 +48,27 @@ cstart = s.index('"CASE-02"')
 cend = s.index('"CASE-03"', cstart)
 block = s[cstart:cend]
 
-block, n1 = re.subn(r'"authoritativeCaseContent"\s*:\s*"(?:\\.|[^"\\])*"', '"authoritativeCaseContent":' + json.dumps(briefing, ensure_ascii=False), block, count=1, flags=re.S)
-block, n2 = re.subn(r'"studentQuestions"\s*:\s*\[.*?\]', '"studentQuestions":' + json.dumps(questions, ensure_ascii=False), block, count=1, flags=re.S)
-block, n3 = re.subn(r'"embeddedCourseGuidance"\s*:\s*.*?(?=,"source"\s*:)', '"embeddedCourseGuidance":' + json.dumps(guidance, ensure_ascii=False), block, count=1, flags=re.S)
+block, n1 = re.subn(
+    r'"authoritativeCaseContent"\s*:\s*"(?:\\.|[^"\\])*"',
+    lambda m: '"authoritativeCaseContent":' + json.dumps(briefing, ensure_ascii=False),
+    block,
+    count=1,
+    flags=re.S,
+)
+block, n2 = re.subn(
+    r'"studentQuestions"\s*:\s*\[.*?\]',
+    lambda m: '"studentQuestions":' + json.dumps(questions, ensure_ascii=False),
+    block,
+    count=1,
+    flags=re.S,
+)
+block, n3 = re.subn(
+    r'"embeddedCourseGuidance"\s*:\s*.*?(?=,"source"\s*:)',
+    lambda m: '"embeddedCourseGuidance":' + json.dumps(guidance, ensure_ascii=False),
+    block,
+    count=1,
+    flags=re.S,
+)
 
 if not (n1 and n2 and n3):
     raise RuntimeError(f'Patch failed: authoritative={n1}, questions={n2}, guidance={n3}')
