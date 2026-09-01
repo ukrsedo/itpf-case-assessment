@@ -14,6 +14,16 @@
     "Always score from 0 to 5.",
     "Provide feedback mapped to every main case question. Do not generate challenge or follow-up questions."
   ],
+  "caseSpecificRules": {
+    "CASE-02": [
+      "Do not require or reward a numerical opportunity-cost calculation.",
+      "Do not deduct points because the student does not calculate or mention GBP 62.5 million.",
+      "The GBP 62.5 million calculation is tutor/background material and is not part of the student-facing evidence or score-bearing rubric.",
+      "Assess opportunity cost conceptually: lost revenue, disruption, customer trust, operational damage, foregone retained internal capability, resilience and service continuity are valid answers when linked to the case.",
+      "Assess the recommendation by whether the student balances apparent TCO savings against operational risk, continuity, control and risk-adjusted TCO; selective or hybrid outsourcing is a valid recommendation when reasoned from the case.",
+      "A score of 5 does not require any numerical opportunity-cost figure."
+    ]
+  },
   "requiredResultFields": [
     "score",
     "questionFeedback",
