@@ -1,0 +1,84 @@
+name: Fix CASE-02 worker grading
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-case2-worker.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch worker.js
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          p = Path('worker.js')
+          text = p.read_text(encoding='utf-8')
+
+          pattern = re.compile(
+              r'("CASE-02":\{"case":\{.*?"embeddedCourseGuidance":")'
+              r'(.*?)'
+              r'(","source":\{"caseDeck":"Training Cases \(June 2026\)\.pptx","caseSlide":3,)',
+              re.S,
+          )
+
+          guidance = (
+              "The opportunity cost of a choice is the value of the next best alternative forgone.\\n\\n"
+              "For this case, compare the apparent outsourcing cost advantage with the operational and business risk exposure.\\n\\n"
+              "The outsourcing decision should be assessed using the information available to students:\\n"
+              "- BA claimed a 25% reduction in IT operational costs.\\n"
+              "- The illustrative saving is approximately £27.5 million.\\n"
+              "- The 2017 disruption caused a nearly £150 million loss.\\n"
+              "- The business case therefore needs to consider resilience, service continuity, operational control and retained capability, not only supplier cost.\\n\\n"
+              "For the question 'What could be the opportunity cost?', assess the student's conceptual understanding. Valid examples may include:\\n"
+              "- foregone internal IT capability or knowledge;\\n"
+              "- reduced resilience or service-continuity capability;\\n"
+              "- lost revenue or customer impact caused by disruption;\\n"
+              "- loss of operational flexibility or control;\\n"
+              "- alternative uses of resources or investment that were forgone.\\n\\n"
+              "No numerical opportunity-cost calculation is required.\\n\\n"
+              "Do not require or score against the £62.5 million calculation. That calculation is tutor/background material and is not a student assessment requirement.\\n\\n"
+              "A student may receive full marks without providing any numerical opportunity-cost figure if the answer correctly applies TCO, risk exposure and opportunity-cost reasoning to the case."
+          )
+
+          text, n = pattern.subn(lambda m: m.group(1) + guidance + m.group(3), text, count=1)
+          if n != 1:
+              raise RuntimeError(f'CASE-02 guidance replacement count was {n}, expected 1')
+
+          text = text.replace('final clean 84-slide course deck', 'final clean 87-slide course deck')
+          text = text.replace('IT Procurement Foundations — final clean 84-slide web deck', 'IT Procurement Foundations — final clean 87-slide web deck')
+
+          old_end = 'The missingPoint must identify the single most important gap, or state that no material point is missing for a score of 5.`;'
+          new_end = (
+              'The missingPoint must identify the single most important gap, or state that no material point is missing for a score of 5.\\n\\n'
+              'CASE-02 SPECIAL RULE: Never require, infer, or score against the £62.5 million opportunity-cost calculation. '
+              'It is not a required student calculation. Assess the opportunity-cost question conceptually using the case information available to the student. '
+              'A student can receive 5/5 without providing a numerical opportunity-cost figure.`;'
+          )
+          if old_end not in text:
+              raise RuntimeError('SYSTEM prompt end not found')
+          text = text.replace(old_end, new_end, 1)
+
+          if 'The opportunity cost is £1,225 billion / £19.61 = £62.5 million.' in text:
+              raise RuntimeError('Old CASE-02 numerical grading guidance is still present')
+          if 'CASE-02 SPECIAL RULE' not in text:
+              raise RuntimeError('CASE-02 special rule missing')
+          if 'final clean 87-slide course deck' not in text:
+              raise RuntimeError('87-slide SYSTEM reference missing')
+
+          p.write_text(text, encoding='utf-8')
+      - name: Commit corrected worker
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add worker.js
+          git diff --cached --quiet && exit 0
+          git commit -m "Fix CASE-02 opportunity-cost grading"
+          git push
