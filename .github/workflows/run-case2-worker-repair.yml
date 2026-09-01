@@ -1,0 +1,20 @@
+name: Run Case 2 worker repair
+on:
+  push:
+    paths:
+      - '.github/workflows/run-case2-worker-repair.yml'
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python tools/fix_case2_worker.py
+      - run: node --check worker.js
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add worker.js
+          git commit -m "Repair Case 2 worker and validate syntax"
+          git push
