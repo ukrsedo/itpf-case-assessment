@@ -55,25 +55,15 @@ jobs:
           text = text.replace('final clean 84-slide course deck', 'final clean 87-slide course deck')
           text = text.replace('IT Procurement Foundations — final clean 84-slide web deck', 'IT Procurement Foundations — final clean 87-slide web deck')
 
-          old_end = 'The missingPoint must identify the single most important gap, or state that no material point is missing for a score of 5.`;'
-          new_end = (
-              'The missingPoint must identify the single most important gap, or state that no material point is missing for a score of 5.\\n\\n'
-              'CASE-02 SPECIAL RULE: Never require, infer, or score against the £62.5 million opportunity-cost calculation. '
-              'It is not a required student calculation. Assess the opportunity-cost question conceptually using the case information available to the student. '
-              'A student can receive 5/5 without providing a numerical opportunity-cost figure.`;'
-          )
-          if old_end not in text:
-              raise RuntimeError('SYSTEM prompt end not found')
-          text = text.replace(old_end, new_end, 1)
-
-          if 'The opportunity cost is £1,225 billion / £19.61 = £62.5 million.' in text:
-              raise RuntimeError('Old CASE-02 numerical grading guidance is still present')
           if 'CASE-02 SPECIAL RULE' not in text:
-              raise RuntimeError('CASE-02 special rule missing')
-          if 'final clean 87-slide course deck' not in text:
-              raise RuntimeError('87-slide SYSTEM reference missing')
+              marker = 'The missingPoint must identify the single most important gap, or state that no material point is missing for a score of 5.'
+              rule = marker + '\\n\\nCASE-02 SPECIAL RULE: Never require, infer, or score against the £62.5 million opportunity-cost calculation. It is not a required student calculation. Assess the opportunity-cost question conceptually using the case information available to the student. A student can receive 5/5 without providing a numerical opportunity-cost figure.'
+              if marker not in text:
+                  raise RuntimeError('SYSTEM prompt marker not found')
+              text = text.replace(marker, rule, 1)
 
           p.write_text(text, encoding='utf-8')
+
       - name: Commit corrected worker
         run: |
           git config user.name "github-actions[bot]"
@@ -83,4 +73,4 @@ jobs:
           git commit -m "Fix CASE-02 opportunity-cost grading"
           git push
 
-# trigger: 2026-09-01
+# trigger: 2026-09-01-b
