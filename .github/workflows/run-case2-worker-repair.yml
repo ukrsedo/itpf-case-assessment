@@ -18,3 +18,4 @@ jobs:
           git add worker.js
           git commit -m "Repair Case 2 worker and validate syntax"
           git push
+# rerun after escaped-newline fix
