@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Patch Case 2
-        shell: python
+        shell: bash
         run: |
+          python <<'PY'
           import json, re
           from pathlib import Path
 
@@ -36,7 +37,6 @@ Your task is to compare the sourcing alternatives using TCO, opportunity cost, r
             "What assumptions or risks could change that conclusion?"
           ]
 
-          # cases.js
           p = Path('cases.js')
           s = p.read_text()
           start = s.index('    "caseId": "CASE-02"')
@@ -48,7 +48,6 @@ Your task is to compare the sourcing alternatives using TCO, opportunity cost, r
           s = s[:start] + block + s[end:]
           p.write_text(s)
 
-          # assessment-rules.json
           p = Path('assessment-rules.json')
           data = json.loads(p.read_text())
           data['caseSpecificRules']['CASE-02'] = [
@@ -62,7 +61,6 @@ Your task is to compare the sourcing alternatives using TCO, opportunity cost, r
           ]
           p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
 
-          # worker.js: replace CASE-02 embedded guidance and stale special rule
           p = Path('worker.js')
           s = p.read_text()
           guidance = """Opportunity cost is the value of the best alternative forgone when a decision is made.
@@ -83,13 +81,10 @@ Do not compare revenue directly with savings; apply the 5% profit margin first.
 Under the stated assumptions, the economic comparison is £180 million versus £211.25 million, a £31.25 million advantage for insourcing. However, the third question should test the assumptions, especially the causal assumption that insourcing would have prevented the full disruption loss and the use of revenue-supported-per-FTE as a proxy for economic value.
 
 Score the student's reasoning against the three student questions. A different sourcing recommendation can still be strong if the student explicitly challenges an assumption and recalculates or explains the economic consequence."""
-          # Replace embeddedCourseGuidance within CASE-02 object only
           cstart = s.index('"CASE-02"')
           cend = s.index('"CASE-03"', cstart)
           cblock = s[cstart:cend]
-          cblock2, n = re.subn(r'embeddedCourseGuidance\s*:\s*`.*?`', 'embeddedCourseGuidance:`' + guidance.replace('`','\\`') + '`', cblock, count=1, flags=re.S)
-          if n == 0:
-            cblock2, n = re.subn(r'"embeddedCourseGuidance"\s*:\s*".*?"', '"embeddedCourseGuidance":' + json.dumps(guidance, ensure_ascii=False), cblock, count=1, flags=re.S)
+          cblock2, n = re.subn(r'"embeddedCourseGuidance"\s*:\s*"(?:\\.|[^"\\])*"', '"embeddedCourseGuidance":' + json.dumps(guidance, ensure_ascii=False), cblock, count=1, flags=re.S)
           if n == 0:
             raise RuntimeError('CASE-02 embeddedCourseGuidance not found')
           s = s[:cstart] + cblock2 + s[cend:]
@@ -99,8 +94,9 @@ Score the student's reasoning against the three student questions. A different s
           if old_rule in s:
             s = s.replace(old_rule, new_rule)
           else:
-            s = re.sub(r'CASE-02 SPECIAL RULE:.*?(?=(?:\\n|\n)[A-Z][A-Z -]{4,}:|(?:\\n|\n){2})', new_rule, s, count=1, flags=re.S)
+            s = re.sub(r'CASE-02 SPECIAL RULE:.*?(?=\\n[A-Z][A-Z -]{4,}:|\\n\\n)', new_rule, s, count=1, flags=re.S)
           p.write_text(s)
+          PY
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
