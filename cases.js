@@ -58,9 +58,9 @@ window.CASES = [
     "title": "Contact Center Renewal Negotiations",
     "authoritativeCaseContent": "Case #4: Contact Center Renewal Negotiations\n\nBackground:\nState-owned company.\nBalancing strict Business SLA with cost-efficiency goals.\nThe end-user (Customer Service) established tight bonds with the supplier and implemented a few informal agreements (deviating from the contract).\nTiered pricing is based on resources/rates. Present consumption is at Tier 4.\nCurrent Business SLA: daily 90% within 20 seconds for all lines of business.\nLegal minimum: 80% response rate mandated by law.\nSupplier sought to recover account acquisition investments through extra charges.\n\nCurrent Tier 4 basis:\n- 4,501–5,500 transactions per day.\n- 85 agents at a rate of 7,500.\n- 6 team leaders at a rate of 9,200.\n- 4 quality-assurance resources at a rate of 8,500.",
     "studentQuestions": [
-      "What negotiation strategy would you recommend?",
-      "Should procurement challenge the SLA and staffing assumptions?",
-      "How should informal agreements be handled?"
+      "What negotiation strategy would you recommend for the contract renewal?",
+      "What information should procurement obtain or validate before entering the negotiation?",
+      "What are the main risks if the company renews the contract without resolving the current issues?"
     ],
     "relatedTopics": [
       "Sourcing Value Levers",

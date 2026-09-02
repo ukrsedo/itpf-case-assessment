@@ -25,13 +25,13 @@
       "A different recommendation may receive full credit only if the student explicitly challenges one or more case assumptions and explains how that changes the economics."
     ],
     "CASE-04": [
-      "Question 1 should recommend a negotiation strategy across SLA, contract compliance/tier allocation, resource allocation, rates and extra charges using only the supplied case facts.",
-      "Recognize that the current Business SLA is daily 90% within 20 seconds for all lines of business, while the legal minimum is an 80% response rate.",
-      "A strong answer should challenge whether the 90%/20-second Business SLA is still justified by business need and customer impact; do not assume that the SLA should automatically be reduced to the 80% legal minimum.",
-      "For staffing and tier allocation, use the supplied Tier 4 basis: 4,501–5,500 transactions per day, 85 agents, 6 team leaders and 4 quality-assurance resources. Students should test whether actual demand still supports Tier 4 and its resource mix.",
-      "For rates, challenge the stated rate structure and supplier extra charges, including the supplier's attempt to recover account-acquisition investment; do not accept those charges merely because the supplier incurred them.",
-      "For informal agreements, require the student to identify the governance and contract-compliance risk and recommend that any necessary arrangement be formally reviewed, approved and incorporated into the contract rather than left as an informal side agreement.",
-      "Do not require a specific SLA reduction, staffing cut or saving amount unless the student explicitly states an assumption; the case does not provide actual performance data or observed transaction volumes beyond the current Tier 4 basis."
+      "Question 1 should recommend an integrated renewal negotiation strategy using only the supplied facts. A strong answer should address the current 90% within 20 seconds Business SLA versus the 80% legal minimum, Tier 4 demand and staffing, rates and extra charges, and the informal contractual deviations.",
+      "Question 1 should not assume that the Business SLA must be reduced to the legal minimum; students should test whether the 90%/20-second requirement remains justified by business need and customer impact.",
+      "Question 2 is an information-gap question, not a repeat of the negotiation strategy. Credit students for identifying evidence procurement should obtain or validate before negotiation, especially actual transaction volumes, actual SLA performance, staffing utilisation/productivity, whether Tier 4 remains the correct tier, the basis and benchmark for rates, the justification for extra charges, and the scope/status of informal agreements.",
+      "Question 2 does not require students to invent missing data or calculate a specific staffing reduction or saving.",
+      "Question 3 should identify risks evidenced by the case if renewal proceeds without resolving the issues: overpaying for unnecessary capacity or an unnecessarily demanding SLA, accepting unsupported supplier charges, remaining in an incorrect pricing tier or staffing model, contract leakage and ambiguity from informal agreements, and weakened buyer control caused by the close end-user/supplier relationship.",
+      "For Question 3, accept equivalent risk wording where it is clearly tied to the supplied case facts; do not require detailed governance mechanisms that the case does not provide enough information to design.",
+      "Do not require a specific SLA reduction, staffing cut, target tier or saving amount unless the student explicitly states an assumption."
     ]
   },
   "requiredResultFields": [
