@@ -39,3 +39,5 @@ data.setdefault('caseSpecificRules', {})['CASE-04'] = [
     'Do not require a specific SLA reduction, staffing cut or saving amount unless the student explicitly states an assumption; the case does not provide actual performance data or observed transaction volumes beyond the current Tier 4 basis.'
 ]
 p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+
+# trigger run
