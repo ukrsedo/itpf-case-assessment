@@ -1,37 +1,22 @@
 from pathlib import Path
 import json
 
-old_questions = [
-    "What negotiation strategy would you recommend?",
-    "Should procurement challenge the SLA and staffing assumptions?",
-    "How should informal agreements be handled?"
-]
-new_questions = [
-    "What negotiation strategy would you recommend for the contract renewal?",
-    "What information should procurement obtain or validate before entering the negotiation?",
-    "What are the main risks if the company renews the contract without resolving the current issues?"
-]
+replacements = {
+    "What negotiation strategy would you recommend?": "What negotiation strategy would you recommend for the contract renewal?",
+    "Should procurement challenge the SLA and staffing assumptions?": "What information should procurement obtain or validate before entering the negotiation?",
+    "How should informal agreements be handled?": "What are the main risks if the company renews the contract without resolving the current issues?"
+}
 
-# cases.js
-p = Path('cases.js')
-s = p.read_text(encoding='utf-8')
-old = json.dumps(old_questions, ensure_ascii=False, indent=2)
-new = json.dumps(new_questions, ensure_ascii=False, indent=2)
-if old not in s:
-    raise SystemExit('CASE-04 question block not found in cases.js')
-p.write_text(s.replace(old, new, 1), encoding='utf-8')
+for filename in ['cases.js', 'worker.js']:
+    p = Path(filename)
+    s = p.read_text(encoding='utf-8')
+    for old, new in replacements.items():
+        count = s.count(old)
+        if count != 1:
+            raise SystemExit(f'{filename}: expected exactly one occurrence of {old!r}, found {count}')
+        s = s.replace(old, new, 1)
+    p.write_text(s, encoding='utf-8')
 
-# worker.js
-p = Path('worker.js')
-s = p.read_text(encoding='utf-8')
-old_compact = json.dumps(old_questions, ensure_ascii=False, separators=(',', ':'))
-new_compact = json.dumps(new_questions, ensure_ascii=False, separators=(',', ':'))
-if old_compact not in s:
-    raise SystemExit('CASE-04 question block not found in worker.js')
-s = s.replace(old_compact, new_compact, 1)
-p.write_text(s, encoding='utf-8')
-
-# assessment-rules.json
 p = Path('assessment-rules.json')
 data = json.loads(p.read_text(encoding='utf-8'))
 data['caseSpecificRules']['CASE-04'] = [
@@ -45,4 +30,4 @@ data['caseSpecificRules']['CASE-04'] = [
 ]
 p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-# trigger workflow
+# trigger workflow v2
