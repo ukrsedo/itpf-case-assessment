@@ -44,3 +44,5 @@ data['caseSpecificRules']['CASE-04'] = [
     "Do not require a specific SLA reduction, staffing cut, target tier or saving amount unless the student explicitly states an assumption."
 ]
 p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+# trigger workflow
