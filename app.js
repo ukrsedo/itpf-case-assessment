@@ -83,7 +83,10 @@ async function submitScore(){
   }catch(e){
     msg.innerHTML='<p class="notice error">The score could not be submitted. Please try again.</p>';
   }finally{
-    if(submitButton&&!state.submissionAttempted){submitButton.disabled=false;submitButton.textContent='Submit score'}
+    if(submitButton){
+      if(state.submissionAttempted){submitButton.disabled=true;submitButton.textContent='Submitted'}
+      else{submitButton.disabled=false;submitButton.textContent='Submit score'}
+    }
   }
 }
 async function getStudentResults(){
