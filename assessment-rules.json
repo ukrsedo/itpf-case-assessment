@@ -11,27 +11,32 @@
     "Accept concise bullet answers and equivalent professional wording.",
     "Do not require essays and do not penalize wording where reasoning is correct.",
     "Do not introduce external theories, facts, or frameworks.",
-    "Always score from 0 to 5.",
-    "Provide feedback mapped to every main case question. Do not generate challenge or follow-up questions."
+    "Always score from 0 to 5, regardless of whether a case contains two or three questions.",
+    "Provide one feedback item for every main case question. Do not generate challenge or follow-up questions.",
+    "For two-question cases, assess both questions with equal importance unless a case-specific rule states otherwise.",
+    "Fewer questions must not lower the standard required for a score of 5."
   ],
   "caseSpecificRules": {
+    "CASE-01": [
+      "Assess all three questions with equal importance. A score of 5 requires a reasoned migration decision, a balanced interpretation of the AI proposition, and practical consumption-cost controls. Do not require a particular migrate-or-delay conclusion when it is supported by the case. Do not reward unsupported claims."
+    ],
     "CASE-02": [
-      "Question 1 requires a numerical comparison of the economic opportunity costs using only the case assumptions.",
-      "For choosing in-house, recognize the £180 million five-year TCO advantage forgone versus outsourcing (£720m - £540m).",
-      "For choosing outsourcing, recognize the assumed value forgone from retained internal capability: £61.25 million five-year profit contribution (700 x £350,000 x 5% x 5 years) plus the assumed £150 million disruption loss prevented by stronger internal capability, giving £211.25 million under the exercise assumptions.",
-      "Do not compare £350,000 revenue per FTE directly with sourcing savings; apply the stated 5% profit margin first.",
-      "Under the stated assumptions, insourcing has a £31.25 million economic advantage over outsourcing (£211.25m - £180m).",
-      "Question 3 should test the assumptions: especially whether insourcing really would have prevented the full £150m loss, whether revenue supported per FTE is a valid proxy for economic value, and whether all relevant transition, governance, resilience and supplier-performance risks are captured.",
-      "A different recommendation may receive full credit only if the student explicitly challenges one or more case assumptions and explains how that changes the economics."
+      "Assess all three questions, giving greatest importance to the economic comparison and the resulting recommendation. The reference calculation is: £180 million direct outsourcing advantage; £61.25 million five-year profit contribution from 700 × £350,000 × 5% × 5 years; £150 million assumed disruption loss; £211.25 million combined opportunity and disruption cost; and a £31.25 million economic advantage for retaining the activities in-house under the stated assumptions. Accept the correct final figures without requiring formulas or calculation steps. Question 3 must test the assumptions rather than merely repeat the recommendation."
+    ],
+    "CASE-03": [
+      "Assess both questions with equal importance. A score of 5 requires case-based reasoning about scale, cost, control, performance and security, together with a clear explanation of the shift in cost structure, operational responsibility and risk. Do not require the learner to recall a single label such as cloud repatriation."
     ],
     "CASE-04": [
-      "Question 1 should recommend an integrated renewal negotiation strategy using only the supplied facts. A strong answer should address the current 90% within 20 seconds Business SLA versus the 80% legal minimum, Tier 4 demand and staffing, rates and extra charges, and the informal contractual deviations.",
-      "Question 1 should not assume that the Business SLA must be reduced to the legal minimum; students should test whether the 90%/20-second requirement remains justified by business need and customer impact.",
-      "Question 2 is an information-gap question, not a repeat of the negotiation strategy. Credit students for identifying evidence procurement should obtain or validate before negotiation, especially actual transaction volumes, actual SLA performance, staffing utilisation/productivity, whether Tier 4 remains the correct tier, the basis and benchmark for rates, the justification for extra charges, and the scope/status of informal agreements.",
-      "Question 2 does not require students to invent missing data or calculate a specific staffing reduction or saving.",
-      "Question 3 should identify risks evidenced by the case if renewal proceeds without resolving the issues: overpaying for unnecessary capacity or an unnecessarily demanding SLA, accepting unsupported supplier charges, remaining in an incorrect pricing tier or staffing model, contract leakage and ambiguity from informal agreements, and weakened buyer control caused by the close end-user/supplier relationship.",
-      "For Question 3, accept equivalent risk wording where it is clearly tied to the supplied case facts; do not require detailed governance mechanisms that the case does not provide enough information to design.",
-      "Do not require a specific SLA reduction, staffing cut, target tier or saving amount unless the student explicitly states an assumption."
+      "Assess both questions with equal importance. A score of 5 requires a coherent negotiation strategy grounded in the case and a sufficiently complete evidence request covering the material commercial and operational uncertainties. Do not require a single predetermined strategy. Do not award credit for generic risk lists that do not answer either question."
+    ],
+    "CASE-05": [
+      "Assess both questions with equal importance. A score of 5 requires analysis of both disputes, not only SAP–Diageo, and protections that respond to indirect access, virtualisation, licensing metrics, audit rights and contractual clarity. Accept equivalent terminology. Do not reward a definition of indirect access without applying it to the cases."
+    ],
+    "CASE-06": [
+      "Assess both questions with equal importance. A score of 5 requires a case-based diagnosis of governance failures and a practical alternative structure connecting procurement, contractual controls and delivery governance. Do not award substantial credit for generic lessons that are not tied to the supplied facts."
+    ],
+    "CASE-07": [
+      "Assess both questions with equal importance. A score of 5 requires the learner to connect several supplied facts—timetable, specification maturity, supplier structure, unsuitable systems, scope and cost control, termination exposure, lifecycle provision and clinical adoption—to both the diagnosis and the proposed alternative. Do not require every fact, but do require coverage of the main commercial, delivery and stakeholder dimensions."
     ]
   },
   "requiredResultFields": [
