@@ -41,12 +41,14 @@ window.CASES = [
     "authoritativeCaseContent": "Case 3: Dropbox's Strategic Shift from AWS\n\nDropbox initially relied heavily on Amazon Web Services to provide the storage capacity required for its cloud service. By 2016, the company had approximately 500 million users and was managing more than 500 petabytes of data.\n\nAWS provided scalability and reliability, but Dropbox faced rising costs and wanted greater control over infrastructure performance and security. The scale and specific requirements of its service made a tailored infrastructure option commercially significant.\n\nIn 2016, Dropbox moved approximately 90% of its operations from AWS to its own infrastructure, known as Magic Pocket. The transition required extensive planning and negotiations with hardware suppliers to obtain the necessary equipment at competitive rates.",
     "studentQuestions": [
       "What commercial and operational factors could justify Dropbox's decision to move most of its operations from AWS to its own infrastructure?",
-      "How would this decision change Dropbox's cost structure, operational responsibilities and risk exposure?"
+      "How would this decision change Dropbox's cost structure, operational responsibilities and risk exposure?",
+      "Using Transaction Cost Economics, did the transaction characteristics—asset specificity, uncertainty and frequency—clearly favour market, hybrid or hierarchy governance for Dropbox, and why?"
     ],
     "relatedTopics": [
       "Cloud Deployment Models",
       "Cloud Services",
-      "Buy or Build",
+      "Make or Buy",
+      "Transaction Cost Economics",
       "TCO of a Technology Service",
       "Kraljic Matrix"
     ]
